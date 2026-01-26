@@ -1,37 +1,76 @@
-# LinkedIn Video Demos
+# LinkedIn Videos
 
-Remotion-powered video generation for LinkedIn posts showcasing Clawdbot features.
+Automated video generation for LinkedIn posts using [Remotion](https://remotion.dev).
 
-## Compositions
+## 🚀 Quick Start
 
-- **ChatDemo** - Animated Telegram-style conversation (1080x1080 square)
-- **ChatDemoVertical** - Same but vertical (1080x1920)
-- **FeatureHighlight** - Feature showcase with animated badges
-- **TitleCard** - Intro/outro title cards
+**Remotion Studio (live):** https://remotion.galang.ai
 
-## Rendering
+### Available Compositions
 
+| Name | Dimensions | Duration | Description |
+|------|------------|----------|-------------|
+| `ChatDemo` | 1080×1080 | 10s | Chat-style demonstration |
+| `FeatureHighlight` | 1080×1080 | 5s | Feature highlight card |
+| `TitleCard` | 1080×1080 | 3s | Simple title animation |
+| `ChatDemoVertical` | 1080×1920 | 10s | Vertical chat demo |
+
+## 🎬 Rendering
+
+### Via Remotion Studio
+Visit https://remotion.galang.ai and use the built-in render controls.
+
+### Via CLI (on galang-core)
 ```bash
+cd /opt/linkedin-videos
+source ~/.nvm/nvm.sh && nvm use 22
+
+# Render TitleCard
+npx remotion render src/index.ts TitleCard out/title.mp4 \
+  --props='{"title":"Your Title","subtitle":"Your Subtitle"}'
+
 # Render ChatDemo
-npx remotion render src/index.ts ChatDemo out/chat-demo.mp4
+npx remotion render src/index.ts ChatDemo out/chat.mp4 \
+  --props='{}'
 
-# Render with custom props
-npx remotion render src/index.ts ChatDemo out/custom.mp4 --props='{"messages":[{"role":"user","text":"Hello!"},{"role":"assistant","text":"Hi there!"}]}'
-
-# Render vertical format
-npx remotion render src/index.ts ChatDemoVertical out/vertical.mp4
+# Custom quality
+npx remotion render src/index.ts TitleCard out/hq.mp4 \
+  --props='{}' --crf 15
 ```
 
-## Development
+## 🛠️ Development
 
 ```bash
+# Clone
+git clone https://github.com/jamesgalang/linkedin-videos
+cd linkedin-videos
+
+# Install
 npm install
-npm start  # Opens Remotion Studio at localhost:3000
+
+# Run studio locally
+npx remotion studio
 ```
 
-## Docker
+## 📁 Project Structure
 
-```bash
-docker-compose up -d
-docker-compose exec remotion npx remotion render src/index.ts ChatDemo out/demo.mp4
 ```
+src/
+├── index.ts              # Entry point
+├── Root.tsx              # Composition definitions
+└── compositions/
+    ├── ChatDemo.tsx      # Chat demonstration
+    ├── FeatureHighlight.tsx
+    └── TitleCard.tsx     # Title card animation
+```
+
+## 🏗️ Infrastructure
+
+- **Server:** galang-core (178.156.174.157)
+- **Path:** `/opt/linkedin-videos`
+- **Studio URL:** https://remotion.galang.ai (via Pangolin)
+- **Node.js:** v22.22.0 (via nvm)
+
+## 📝 License
+
+MIT
