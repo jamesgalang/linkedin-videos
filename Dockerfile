@@ -43,5 +43,8 @@ COPY . .
 # Create output directory
 RUN mkdir -p /app/out
 
-# Default command - keep container running
-CMD ["tail", "-f", "/dev/null"]
+# Expose studio port
+EXPOSE 3000
+
+# Run Remotion Studio
+CMD ["npx", "remotion", "studio", "--port", "3000", "--ip", "0.0.0.0", "src/index.ts"]
