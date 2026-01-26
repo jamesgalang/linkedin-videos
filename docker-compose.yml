@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  remotion:
+    build: .
+    volumes:
+      - ./src:/app/src
+      - ./out:/app/out
+    ports:
+      - "3000:3000"
+    environment:
+      - CHROME_PATH=/usr/bin/chromium
