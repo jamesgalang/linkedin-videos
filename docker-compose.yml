@@ -3,9 +3,16 @@ services:
   remotion:
     build: .
     volumes:
-      - ./src:/app/src
-      - ./out:/app/out
+      - /mnt/galang-core/remotion/videos:/app/public/videos
+      - /mnt/galang-core/remotion/out:/app/out
     ports:
       - "3000:3000"
     environment:
       - CHROME_PATH=/usr/bin/chromium
+      - TINI_SUBREAPER=1
+    healthcheck:
+      test: ["CMD-SHELL", "node -e \"const http = require('http'); http.get('http://localhost:3000', (r) => { process.exit(r.statusCode === 200 ? 0 : 1) }).on('error', () => process.exit(1))\""]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s

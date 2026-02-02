@@ -51,8 +51,11 @@ RUN mkdir -p /app/out
 # Expose studio port
 EXPOSE 3000
 
+# Enable tini subreaper mode (works even when not PID 1)
+ENV TINI_SUBREAPER=1
+
 # Use tini as entrypoint for proper signal handling & zombie reaping
-ENTRYPOINT ["tini", "--"]
+ENTRYPOINT ["tini", "-s", "--"]
 
 # Run Remotion Studio
 CMD ["npx", "remotion", "studio", "--port", "3000", "--ip", "0.0.0.0", "src/index.ts"]
