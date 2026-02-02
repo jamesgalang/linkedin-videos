@@ -1,0 +1,15 @@
+services:
+  remotion:
+    build: .
+    init: true
+    ports:
+      - "3000:3000"
+    volumes:
+      - /mnt/galang-core/remotion/videos:/app/public/videos
+      - /mnt/galang-core/remotion/out:/app/out
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
