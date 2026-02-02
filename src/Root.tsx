@@ -3,6 +3,7 @@ import { ChatDemo } from "./compositions/ChatDemo";
 import { FeatureHighlight } from "./compositions/FeatureHighlight";
 import { TitleCard } from "./compositions/TitleCard";
 import { MascotIntro } from "./compositions/MascotIntro";
+import { MascotVideo } from "./compositions/MascotVideo";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -50,6 +51,36 @@ export const RemotionRoot: React.FC = () => {
         }}
       />
       
+      {/* Mascot Video - Square (1080x1080) - Animated mascot + text overlay */}
+      <Composition
+        id="MascotVideo"
+        component={MascotVideo}
+        durationInFrames={180}
+        fps={30}
+        width={1080}
+        height={1080}
+        defaultProps={{
+          headline: "AI Agents That Actually Work",
+          subline: "Deploy. Automate. Scale.",
+          tagline: "galang.ai/ai-agent-deployment",
+        }}
+      />
+
+      {/* Mascot Video - Vertical (1080x1920) */}
+      <Composition
+        id="MascotVideoVertical"
+        component={MascotVideo}
+        durationInFrames={180}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{
+          headline: "AI Agents That Actually Work",
+          subline: "Deploy. Automate. Scale.",
+          tagline: "galang.ai/ai-agent-deployment",
+        }}
+      />
+
       {/* Mascot Intro - Square (1080x1080) */}
       <Composition
         id="MascotIntro"

@@ -1,0 +1,7 @@
+node_modules
+.git
+out
+*.mp4
+*.webm
+README.md
+.DS_Store

@@ -1,7 +1,10 @@
 FROM node:20-slim
 
-# Install dependencies for Chromium
-RUN apt-get update && apt-get install -y \
+# Install tini for proper process reaping (prevents zombie processes)
+RUN apt-get update && apt-get install -y tini --no-install-recommends
+
+# Install dependencies for Chromium and video processing
+RUN apt-get install -y \
     chromium \
     ffmpeg \
     fonts-liberation \
@@ -40,11 +43,16 @@ RUN npm install
 # Copy source
 COPY . .
 
-# Create output directory
+# Create directories for video I/O
+# /app/public - input videos (Remotion staticFile serves from here)
+# /app/out - rendered output videos
 RUN mkdir -p /app/out
 
 # Expose studio port
 EXPOSE 3000
+
+# Use tini as entrypoint for proper signal handling & zombie reaping
+ENTRYPOINT ["tini", "--"]
 
 # Run Remotion Studio
 CMD ["npx", "remotion", "studio", "--port", "3000", "--ip", "0.0.0.0", "src/index.ts"]
