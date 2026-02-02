@@ -2,6 +2,7 @@ import { Composition } from "remotion";
 import { ChatDemo } from "./compositions/ChatDemo";
 import { FeatureHighlight } from "./compositions/FeatureHighlight";
 import { TitleCard } from "./compositions/TitleCard";
+import { MascotIntro } from "./compositions/MascotIntro";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -49,6 +50,36 @@ export const RemotionRoot: React.FC = () => {
         }}
       />
       
+      {/* Mascot Intro - Square (1080x1080) */}
+      <Composition
+        id="MascotIntro"
+        component={MascotIntro}
+        durationInFrames={180}
+        fps={30}
+        width={1080}
+        height={1080}
+        defaultProps={{
+          headline: "AI Agents That Actually Work",
+          subline: "Deploy. Automate. Scale.",
+          tagline: "galang.ai/ai-agent-deployment",
+        }}
+      />
+
+      {/* Mascot Intro - Vertical (1080x1920) */}
+      <Composition
+        id="MascotIntroVertical"
+        component={MascotIntro}
+        durationInFrames={180}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{
+          headline: "AI Agents That Actually Work",
+          subline: "Deploy. Automate. Scale.",
+          tagline: "galang.ai/ai-agent-deployment",
+        }}
+      />
+
       {/* Vertical format for LinkedIn Stories (1080x1920) */}
       <Composition
         id="ChatDemoVertical"
