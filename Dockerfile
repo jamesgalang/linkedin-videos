@@ -1,7 +1,8 @@
 FROM node:20-slim
 
 # Install tini for proper process reaping (prevents zombie processes)
-RUN apt-get update && apt-get install -y tini --no-install-recommends
+# Install curl for Coolify healthchecks
+RUN apt-get update && apt-get install -y tini curl --no-install-recommends
 
 # Install dependencies for Chromium and video processing
 RUN apt-get install -y \
