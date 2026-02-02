@@ -7,6 +7,8 @@ services:
       - /mnt/galang-core/remotion/out:/app/out
     ports:
       - "3000:3000"
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
     environment:
       - CHROME_PATH=/usr/bin/chromium
       - TINI_SUBREAPER=1
